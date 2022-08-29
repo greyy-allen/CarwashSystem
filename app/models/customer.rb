@@ -9,21 +9,5 @@ class Customer < ApplicationRecord
     def owned_vehicles
         vehicles.map(&:model).join(', ')
     end
-
-    def owned_vehicles_make
-        vehicles.map(&:make).join(', ')
-    end
-
-    def owned_vehicles_color
-        vehicles.map(&:color).join(', ')
-    end
-
-    def owned_vehicles_plate
-        vehicles.map(&:plates).join(', ')
-    end
-
-    def owned_vehicles_desc
-        vehicles.map(&:description).join(', ')
-    end
-
+    
 end

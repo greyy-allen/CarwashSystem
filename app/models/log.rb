@@ -21,6 +21,6 @@ class Log < ApplicationRecord
     end
 
     def display_price
-        services.map(&:rate)
+        services.sum(:rate)
     end
 end
