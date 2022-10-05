@@ -5,7 +5,11 @@ class CustomersController < ApplicationController
   def index
     @customers = Customer.all
   end
-
+  
+  def search
+    @customers = Customer.where("first_name LIKE ?", "%" + params[:q] + "%")
+  end
+  
   # GET /customers/1 or /customers/1.json
   def show
   end
@@ -18,7 +22,6 @@ class CustomersController < ApplicationController
   # GET /customers/1/edit
   def edit
   end
-
   # POST /customers or /customers.json
   def create
     @customer = Customer.new(customer_params)
