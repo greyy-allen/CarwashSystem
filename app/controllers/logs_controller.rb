@@ -8,9 +8,9 @@ class LogsController < ApplicationController
       .page(params[:page] || 1)
   end
 
-  # def search
-  #   @logs = Log.where("display_customer LIKE ?", "%" + params[:q] + "%")
-  # end
+  def search
+    @logs = Log.where("display_customer LIKE ?", "%" + params[:q] + "%")
+  end
 
   # GET /logs/1 or /logs/1.json
   def show
