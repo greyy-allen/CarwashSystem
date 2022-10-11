@@ -18,7 +18,7 @@ class Log < ApplicationRecord
       services.map(&:title).join(', ')
     end
 
-    def display_customer
+    def display_customer 
       customer&.display_name
     end
 
@@ -28,5 +28,18 @@ class Log < ApplicationRecord
 
     def display_price
       services.sum(:rate)
+    end
+
+    def self.search(params)
+      # where('status = ?', 0)
+      logs = self.joins(:services, :customer)
+
+      return logs if params.nil?
+
+      logs = logs.where(services: { title: params[:service]}) unless params[:service].empty?
+      logs = logs.where(customer: { id: params[:customer]}) unless params[:customer].empty?
+      
+      logs
+
     end
 end
