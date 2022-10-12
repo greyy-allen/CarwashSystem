@@ -32,12 +32,13 @@ class Log < ApplicationRecord
 
     def self.search(params)
       # where('status = ?', 0)
-      logs = self.joins(:services, :customer)
+      logs = self.joins(:customer, :services)
 
       return logs if params.nil?
 
-      logs = logs.where(services: { title: params[:service]}) unless params[:service].empty?
-      logs = logs.where(customer: { id: params[:customer]}) unless params[:customer].empty?
+      logs = logs.where(services: { id: params[:service]}) unless params[:service].empty?
+      # logs = logs.where(customer: { id: params[:customer]}) unless params[:customer].empty?
+      logs = logs.where("lowercase(first_name) LIKE ?", "%" + params[:customer] + "%") unless params[:customer].empty? 
       
       logs
 
