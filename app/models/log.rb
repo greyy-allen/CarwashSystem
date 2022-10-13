@@ -38,7 +38,7 @@ class Log < ApplicationRecord
 
       logs = logs.where(services: { id: params[:service]}) unless params[:service].empty?
       # logs = logs.where(customer: { id: params[:customer]}) unless params[:customer].empty?
-      logs = logs.where("first_name LIKE ?", "%" + params[:customer] + "%") unless params[:customer].empty? 
+      logs = logs.where("lower(first_name) LIKE ? OR lower(last_name) LIKE ?", "%" + params[:customer] + "%", "%" + params[:customer] + "%") unless params[:customer].empty? 
       
       logs
 

@@ -7,9 +7,31 @@
 <%= paginate @logs %>
 
 
+
+<table>
+  <thead>
+    <tbody>
+      <div>
+        <%= form_with url: logs_path do |form| %>
+          <div class="container">
+            <div class="row">
+              <td class><%= form.text_field :"search[customer]", placeholder: "Customer" %></td>
+              <td class><%= form.text_field :"search[service]", placeholder: "Service" %></td>
+              <td class><%= form.text_field :"search[date_from]", placeholder: "Date From" %></td>
+              <td class><%= form.text_field :"search[date_to]", placeholder: "Date To" %></td> 
+              <td><%= form.submit :search %></td>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </tbody>
+  </thead>
+</table>
+
 <table>
   <thead>
     <tr>
+
       <div class="container">
         <div class="row">
           <form class="col-2" action="/logs">
@@ -18,6 +40,7 @@
             <input class="col-2" name="search[date_from]" type="text" placeholder="Date From" aria-label="Search">
             <input class="col-2" name="search[date_to]" type="text" placeholder="Date To" aria-label="Search">
             <button class="btn btn-outline-success col-2" type="submit">Search</button>
+            <button class="btn btn-outline-success col-2" href="/logs">Clear</button>
           </form>
           <th class="col-2">Name</th>
           <th class="col-2">Car Model</th>
