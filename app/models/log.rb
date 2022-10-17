@@ -29,4 +29,14 @@ class Log < ApplicationRecord
     def display_price
       services.sum(:rate)
     end
+
+    def self.search(search_value)
+      logs = self.joins(:services).distinct
+
+      return logs if search_value.nil?
+
+      logs = logs.where(services: {title: search_value[:service]}) unless search_value[:service].empty?
+      return logs
+
+    end
 end

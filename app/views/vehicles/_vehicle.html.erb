@@ -32,12 +32,9 @@
   <p>
     <strong>Image:</strong>
   </p>
-    
-    <% if @vehicle.vehicle_source.present? %>
+    <%- if @vehicle.vehicle_source.present? %>
       <%= image_tag @vehicle.vehicle_source.url, class: "vehicle-show" %>
-    <% else %>
-      <%= image_tag '/images/empty.png' %>
-    <% end %>
-    
-
+    <%- else %>
+      <%= image_tag 'eastwest.png', class: "vehicle-show" %>
+    <%- end %>
 </div>
