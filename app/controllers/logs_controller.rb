@@ -3,11 +3,12 @@ class LogsController < ApplicationController
 
   # GET /logs or /logs.json
   def index
-    @logs = Log
-      .all
-      .page(params[:page] || 1)
+    @logs = Log.search(params[:search]).page(params[:page] || 1)
   end
 
+  # def search
+  #   @logs = Log.where("display_customer LIKE ?","%" + params[:q] + "%")
+  # end    
   # GET /logs/1 or /logs/1.json
   def show
   end
@@ -67,6 +68,6 @@ class LogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def log_params
-      params.require(:log).permit(:title, :display_name, :display_model, :vehicle_id, :service_date,:display_services, :customer_id, :body, :model, :service_id, :status, service_ids: [], tags: [])
+      params.require(:log).permit(:title, :display_name, :display_model, :vehicle_id, :service_date, :customer_id, :body, :model, :service_id, :status, service_ids: [], tags: [])
     end
 end
