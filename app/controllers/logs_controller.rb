@@ -3,14 +3,13 @@ class LogsController < ApplicationController
 
   # GET /logs or /logs.json
   def index
-    @logs = Log
-      .all
-      .page(params[:page] || 1)
+    @logs = Log.search(params[:search]).page(params[:page] || 1)
   end
 
-  def search
-    @logs = Log.where("display_customer LIKE ?","%" + params[:q] + "%")
-  end
+  # def search
+  #   @logs = Log.where(" LIKE ?","%" + params[:q] + "%")
+  # end
+
   # GET /logs/1 or /logs/1.json
   def show
   end

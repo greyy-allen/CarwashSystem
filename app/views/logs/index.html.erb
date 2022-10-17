@@ -12,12 +12,15 @@
     <tr>
       <div class="container">
         <div class="row">
-          <form class="col-2" action="search">
-            <input class="col-2" type="text" placeholder="Customer" aria-label="Search">
-            <input class="col-2" type="text" placeholder="Service" aria-label="Search">
-            <input class="col-2" type="text" placeholder="Date From" aria-label="Search">
-            <input class="col-2" type="text" placeholder="Date To" aria-label="Search">
+        <%= form_with %>
+          <form class="col-2" action="/logs">
+            <input class="col-2" name="search[customer]" type="text" placeholder="Customer" aria-label="Search">
+            <input class="col-2" name="search[service]" type="text" placeholder="Service" aria-label="Search">
+            <input class="col-2" name="search[date_from]" type="text" placeholder="Date From" aria-label="Search">
+            <input class="col-2" name="search[date_to]" type="text" placeholder="Date To" aria-label="Search">
             <button class="btn btn-outline-success col-2" type="submit">Search</button>
+            <%# <button class="btn btn-outline-success col-2" type="submit">Search</button> %>
+            <%= link_to "Clear", '/logs', class: 'btn btn-outline-success col-2' %>
           </form>
           <th class="col-2">Name</th>
           <th class="col-2">Car Model</th>
