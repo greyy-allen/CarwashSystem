@@ -6,9 +6,27 @@
 
 <%= paginate @logs %>
 
+
+      <div>
+        <%= form_with url: logs_path, method: :get do |form| %>
+          <div class="container">
+            <div class="row">
+              <div class="d-flex justify-content-center flex-wrap">
+                        <%= form.text_field :"search[customer]", placeholder: "Customer" %>
+                        <%= form.select :"search[service]", Service.list, prompt: "Select Service" %>
+                        <%= form.text_field :"search[date_from]", placeholder: "Date From" %> 
+                        <%= form.text_field :"search[date_to]", placeholder: "Date To" %> 
+                        <%= form.submit :search, class: "btn btn-outline-success" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      
 <table>
   <thead>
     <tr>
+
       <div class="container">
         <div class="row">
           <th class="col-2">Name</th>
