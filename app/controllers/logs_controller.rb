@@ -3,7 +3,7 @@ class LogsController < ApplicationController
 
   # GET /logs or /logs.json
   def index
-    @logs = Log.search(params[:search]).page(params[:page] || 1)
+    @logs = Log.search(params[:search]).page(params[:page] || 1).order(created_at: :desc)
   end
 
   # def search

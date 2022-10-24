@@ -14,8 +14,8 @@
               <div class="d-flex justify-content-center flex-wrap">
                         <%= form.text_field :"search[customer]", placeholder: "Customer" %>
                         <%= form.select :"search[service]", Service.list, prompt: "Select Service" %>
-                        <%= form.text_field :"search[date_from]", placeholder: "Date From" %> 
-                        <%= form.text_field :"search[date_to]", placeholder: "Date To" %> 
+                        <%= form.text_field :"search[date_from]", placeholder: "Date From", class:"datepicker" %> 
+                        <%= form.text_field :"search[date_to]", placeholder: "Date To", class:"datepicker" %> 
                         <%= form.submit :search, class: "btn btn-outline-success" %>
               </div>
             </div>
@@ -63,3 +63,8 @@
 
 
 <%= link_to "New log", new_log_path %>
+
+
+<script type="text/javascript">
+  $('.datepicker').datepicker();
+</script>

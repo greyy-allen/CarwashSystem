@@ -1,7 +1,7 @@
 class Log < ApplicationRecord
     # belongs_to :service, optional: true
     # TAGS = %i[in out in-and-out]
-    paginates_per 5
+    paginates_per 10
     has_many :availed_services
     has_many :services, through: :availed_services
 
@@ -39,8 +39,12 @@ class Log < ApplicationRecord
       logs = logs.where(services: { id: params[:service]}) unless params[:service].empty?
       # logs = logs.where(customer: { id: params[:customer]}) unless params[:customer].empty?
       logs = logs.where("lower(first_name) LIKE ? OR lower(last_name) LIKE ?", "%" + params[:customer].downcase + "%", "%" + params[:customer].downcase + "%") unless params[:customer].empty? 
+
+      logs = logs.where("service_date >= ? AND service_date <= ?", params[:date_from], params[:date_to]) unless params[:date_from].empty?
+      # where date >= ? AND date <= ?, date_from, date_to unless params[:date].empty?
       
-      logs
+      logs = logs.distinct
 
     end
 end
+

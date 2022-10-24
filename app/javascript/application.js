@@ -6,4 +6,5 @@ import "controllers"
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require jquery-ui.min.js
 //= require_tree .
